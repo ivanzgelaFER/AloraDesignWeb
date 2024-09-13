@@ -1,0 +1,38 @@
+header {
+    width: 100%;
+    position: fixed;
+    z-index: 2000;
+    height: 60px;
+    background-color: var(--header-background);
+    align-items: center;
+    display: flex;
+}
+
+ header .menubar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+ header .menubar .header-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+header .menubar .menu-item {
+    color: #fff;
+    text-decoration: none;
+    margin: 4px;
+    padding: 10px;
+}
+
+header .pi-home {
+    font-size: 30px;
+    color: #fff;
+}
+
+#home-icon {
+    margin-left: 10px;
+}

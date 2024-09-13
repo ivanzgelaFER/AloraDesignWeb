@@ -1,0 +1,160 @@
+.login-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: white;
+}
+.login-form-container {
+    flex: 4;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 40px;
+    width: 400px;
+    border-radius: 20px;
+    background: #FBFAFA;
+}
+.center-login-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 80vw;
+    max-width: 500px;
+}
+.login-form-container label {
+    margin-left: auto;
+}
+.login-form-container hr {
+    width: 100%;
+    border-top: 1px solid #D3D3D3;
+    border-bottom: none;
+    box-sizing: border-box;
+}
+.login-form-container button {
+    width: 100%;
+    flex-shrink: 0;
+}
+#login-error-message {
+    text-align: center;
+    font-weight: bold;
+    height: 20px;
+    margin: 10px 0 !important;
+    color: #c0392b !important;
+}
+#login-locked-message {
+    margin-top: 20px;
+    text-align: center;
+    color: black !important;
+}
+.login-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.language-select-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+}
+
+#centered-text {
+    text-align: center !important;
+}
+
+#login-logo {
+    width: 100%;
+    height: auto;
+}
+
+#login-logo-container {
+    margin: 30px 0;
+    display: flex;
+    align-items: center;
+    color: #606568;
+}
+
+#login-logo-container img {
+    height: auto;
+    width: 100px;
+    margin-right: 25px;
+}
+
+#login-logo-container h2 {
+    font-weight: bold;
+    padding-left: 25px;
+    border-left: 1px solid #D3D3D3;
+}
+
+#sign-up-label {
+    margin: 0;
+}
+
+.login-form-container > .sign-up-button {
+    background-color: #20CEBD;
+    border: none;
+}
+
+.login-form-container > .sign-up-button:hover {
+    background-color: var(--info-color) !important;
+}
+
+.login-form-container > .sign-up-button:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--info-color), 0 1px 2px 0 rgba(0, 0, 0, 0);
+}
+
+.login-container .forgot-pass {
+    text-decoration: none;
+    align-self: flex-end;
+    color: black;
+}
+
+.login-container .forgot-pass i {
+    margin-right: 5px;    
+}
+
+.login-container .last-signup-element {
+    margin-bottom: 15%; 
+}
+
+/*responsive part */
+
+@media only screen and (max-width: 635px) {
+    .login-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+        background: #fff;
+    }
+
+    .center-login-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .login-form-container {
+        flex: 4;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 80vw;
+        padding-left: 10vw;
+        padding-right: 10vw;
+        gap: 12px;
+        background-color: #f0f1f2 !important;
+        border-radius: 10px;
+    }
+}

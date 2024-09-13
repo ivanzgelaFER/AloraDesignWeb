@@ -1,0 +1,34 @@
+.home-container {
+    margin: 0 -50px;
+    color: black !important;
+}
+
+.home-page-section {
+    display: flex;
+    position: relative;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.home-page-section  h1.alora-design-title {
+    font-family: "serif";
+    text-shadow: 3px 3px 6px  #ff8585;
+    font-size: 5em;
+    color: #ffffff;
+}
+
+.home-page-section div.second-section-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.home-page-section div.second-section-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+ 
+.second-section-container img {
+    width: 35vw;
+}
