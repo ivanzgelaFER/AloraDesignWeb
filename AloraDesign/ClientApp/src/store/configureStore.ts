@@ -3,7 +3,7 @@ import createSagaMiddleware from "redux-saga";
 import root from "../sagas/root";
 import { UserData } from "../models/userData";
 import { loginReducer as login, LoginState } from "./loginReducer";
-import {userReducer as user} from "./userReducer";
+import { userReducer as user } from "./userReducer";
 import { CLEAR_REDUX } from "../actions/authentificationActions";
 import { getClearState } from "../helpers/ReduxHelper";
 import { loginRedirectPathReducer as loginRedirectPath } from "./loginRedirectPathReducer";
@@ -26,9 +26,9 @@ const configureStore = (initialState?: AppState) => {
         user,
         loginRedirectPath,
         toastMessage,
-        appSize
+        appSize,
     });
-    
+
     const rootReducer: Reducer<AppState> = (state, action) => {
         if (action.type === CLEAR_REDUX && state) {
             return appReducer({ login: state.login, ...clearState }, action);
@@ -42,17 +42,13 @@ const configureStore = (initialState?: AppState) => {
     if (windowIfDefined && windowIfDefined.__REDUX_DEVTOOLS_EXTENSION__) {
         enhancers.push(windowIfDefined.__REDUX_DEVTOOLS_EXTENSION__());
     }
-    
-    const result = createStore(
-        rootReducer,
-        initialState,
-        compose(applyMiddleware(sagaMiddleware), ...enhancers)
-    );
+
+    const result = createStore(rootReducer, initialState, compose(applyMiddleware(sagaMiddleware), ...enhancers));
 
     sagaMiddleware.run(root);
 
     return result;
-}
+};
 
 export const store = configureStore();
 

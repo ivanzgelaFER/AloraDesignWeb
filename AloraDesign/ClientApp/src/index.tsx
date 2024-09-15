@@ -20,7 +20,31 @@ root.render(
     <Provider store={store}>
         <BrowserRouter>
             <Routes>
-                <Route path="/*" element={<App />} />
+                <Route
+                    path="/login"
+                    element={<Login />}
+                />
+                <Route
+                    path="/sign-up"
+                    element={<Signup />}
+                />
+                <Route
+                    path="/forgot-password"
+                    element={<ForgotPassword />}
+                />
+                <Route
+                    path="/reset-password"
+                    element={<ResetPassword />}
+                />
+                <Route
+                    path="/*"
+                    element={
+                        <PrivateRoute
+                            path="/"
+                            component={App}
+                        />
+                    }
+                />
             </Routes>
         </BrowserRouter>
         <ToastMessage />
@@ -31,3 +55,4 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+

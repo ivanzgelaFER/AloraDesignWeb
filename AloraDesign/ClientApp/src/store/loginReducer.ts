@@ -16,10 +16,7 @@ let initialState: LoginState = {
     loggedIn: savedState ? JSON.parse(savedState) : false,
 };
 
-export const loginReducer: Reducer<LoginState> = (
-    state: LoginState = initialState,
-    action: AuthentificationActionType
-): LoginState => {
+export const loginReducer: Reducer<LoginState> = (state: LoginState = initialState, action: AuthentificationActionType): LoginState => {
     switch (action.type) {
         case SET_AUTH:
             return {

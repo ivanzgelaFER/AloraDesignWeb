@@ -1,12 +1,13 @@
 ﻿using AloraDesign.Domain.Exceptions;
+using AloraDesign.Domain.Models;
 using Serilog;
 using System.Net;
 
-namespace AloraDesign.Exceptions
+namespace AloraDesign.Extensions
 {
-    public class ExceptionMiddlewareExtensions
+    public static class ExceptionMiddlewareExtensions
     {
-        /*public static void ConfigureCustomExceptionMiddleware(this IApplicationBuilder app)
+        public static void ConfigureCustomExceptionMiddleware(this IApplicationBuilder app)
         {
             app.UseMiddleware<ExceptionMiddleware>();
         }
@@ -44,8 +45,8 @@ namespace AloraDesign.Exceptions
                     ForbiddenException => (int)HttpStatusCode.Forbidden,
                     _ => (int)HttpStatusCode.InternalServerError
                 };
-                //await context.Response.WriteAsync(new ErrorDetails { StatusCode = context.Response.StatusCode, Message = exception.Message }.ToString());
+                await context.Response.WriteAsync(new ErrorDetails { StatusCode = context.Response.StatusCode, Message = exception.Message }.ToString());
             }
-        }*/
+        }
     }
 }

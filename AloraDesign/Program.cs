@@ -1,4 +1,6 @@
-using Microsoft.AspNetCore.Hosting;
+using AloraDesign.Data;
+using AloraDesign.Data.Helpers;
+using AloraDesign.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace AloraDesign
@@ -9,7 +11,11 @@ namespace AloraDesign
         {
             IHost host = CreateHostBuilder(args).Build();
             using IServiceScope scope = host.Services.CreateScope();
+            AppUserManager userManager = scope.ServiceProvider.GetService<AppUserManager>();
+            RoleManager<AppRole> roleManager = scope.ServiceProvider.GetService<RoleManager<AppRole>>();
+            BuildingsContext context = scope.ServiceProvider.GetService<BuildingsContext>();
             IConfiguration config = scope.ServiceProvider.GetService<IConfiguration>();
+            await SeedData.InitializeAsync(context, userManager, roleManager, config);
             await host.RunAsync();
         }
 

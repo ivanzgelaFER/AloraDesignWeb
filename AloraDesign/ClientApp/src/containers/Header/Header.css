@@ -5,34 +5,34 @@ header {
     height: 60px;
     background-color: var(--header-background);
     align-items: center;
-    display: flex;
 }
 
- header .menubar {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+header .menubar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
- }
-
- header .menubar .header-content {
     width: 100%;
+    padding: 0px 6px;
+    height: 100%;
+    font-size: 18px;
+    font-family: Inter;
+    background-color: var(--header-background);
+}
+
+.header-end-section {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
-header .menubar .menu-item {
-    color: #fff;
-    text-decoration: none;
-    margin: 4px;
-    padding: 10px;
+.header-end-section > button {
+    height: 40px;
+    min-width: 100px;
+    font-size: 13px !important;
+    margin-right: 20px;
 }
 
-header .pi-home {
-    font-size: 30px;
-    color: #fff;
-}
-
-#home-icon {
-    margin-left: 10px;
+.menubar .fa-building-user {
+    color: white;
+    font-size: 2rem;
+    margin-left: 15px;
 }
