@@ -1,8 +1,8 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 RUN apt-get update -y
-RUN apt-get install cron -y
-RUN apt-get install nano
+RUN apt-get install -y cron
+RUN apt-get install -y nano
 RUN apt-get install -y apt-transport-https
 RUN apt-get install -y wget
 RUN wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
