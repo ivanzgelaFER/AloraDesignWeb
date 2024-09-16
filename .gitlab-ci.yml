@@ -33,11 +33,15 @@ deploy-job:
         - |
             if [[ "$CI_COMMIT_BRANCH" == "main" ]]; then
               doctl auth init -t "$ALORA_PRODUCTION_TOKEN"
+              echo "----------------------------------------line 36!"
               doctl registry login
+              echo "----------------------------------------line 38!"
               docker tag aloradesignimage registry.digitalocean.com/alora-registry/alora-image
-              docker push registry.digitalocean.com/alora-registry/alora-image
-              echo "Deploy to production envirement success!"
+              echo "----------------------------------------line 40!"
+              docker push registry.digitalocean.com/alora-registry/alora-image2
+              echo "----------------------------------------line 4!"
               doctl apps create-deployment "$ALORA_PROD_APPID" --force-rebuild
+              echo "Deploy to production envirement success!"
             fi
     only:
         - main
