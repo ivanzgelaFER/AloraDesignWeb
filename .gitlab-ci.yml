@@ -6,7 +6,7 @@ build-job:
     stage: build
     image: docker:27.2.1-dind
     variables:
-        DOCKER_IMAGE: aloradesign
+        DOCKER_IMAGE: aloradesignimage
     services:
         - docker:27.2.1-dind
     before_script:
@@ -33,6 +33,9 @@ deploy-job:
         - |
             if [[ "$CI_COMMIT_BRANCH" == "main" ]]; then
               doctl auth init -t "$ALORA_PRODUCTION_TOKEN"
+              docker tag aloradesignimage registry.digitalocean.com/alora-registry/alora-image
+              docker push registry.digitalocean.com/alora-registry/alora-image
+              doctl apps create-deployment "$ALORA_PROD_APPID" --force-rebuild
               echo "Deploy to production envirement success!"
             fi
     only:
