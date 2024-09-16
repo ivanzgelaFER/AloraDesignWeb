@@ -33,7 +33,6 @@ deploy-job:
         - |
             if [[ "$CI_COMMIT_BRANCH" == "main" ]]; then
               doctl auth init -t "$ALORA_PRODUCTION_TOKEN"
-              doctl registry login		    
               echo "Deploy to production envirement success!"
             fi
     only:
