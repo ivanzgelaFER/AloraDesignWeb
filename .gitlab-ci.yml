@@ -20,3 +20,20 @@ build-job:
     only:
         refs:
             - main
+
+deploy-job:
+    stage: deploy
+    image: alpine:latest
+    script:
+        - apk add docker
+        - wget https://github.com/digitalocean/doctl/releases/download/v1.111.0/doctl-1.111.0-linux-amd64.tar.gz
+        - tar xf doctl-1.111.0-linux-amd64.tar.gz
+        - mv doctl /usr/local/bin
+        - |
+            if [[ "$CI_COMMIT_BRANCH" == "main" ]]; then
+              doctl auth init -t "$ALORA_PRODUCTION_TOKEN"
+              doctl registry login		    
+              echo "Deploy to production envirement success!"
+            fi
+    only:
+        - main
