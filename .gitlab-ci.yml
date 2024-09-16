@@ -35,8 +35,8 @@ deploy-job:
               doctl auth init -t "$ALORA_PRODUCTION_TOKEN"
               docker tag aloradesignimage registry.digitalocean.com/alora-registry/alora-image
               docker push registry.digitalocean.com/alora-registry/alora-image
-              doctl apps create-deployment "$ALORA_PROD_APPID" --force-rebuild
               echo "Deploy to production envirement success!"
+              doctl apps create-deployment "$ALORA_PROD_APPID" --force-rebuild
             fi
     only:
         - main
