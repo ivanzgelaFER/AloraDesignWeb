@@ -46,9 +46,9 @@ deploy-job:
               echo "----------------------------------------line 46!"
               doctl registry login
               echo "----------------------------------------line 48!"
-              docker tag "$DOCKER_IMAGE" registry.digitalocean.com/alora-registry/alora-repo
+              docker tag "$DOCKER_IMAGE" registry.digitalocean.com/alora-registry/alora-repo-v1
               echo "----------------------------------------line 50!"
-              docker push registry.digitalocean.com/alora-registry/alora-repo
+              docker push registry.digitalocean.com/alora-registry/alora-repo-v1
               echo "----------------------------------------line 52!"
               doctl apps create-deployment "$ALORA_PROD_APPID" --force-rebuild
               echo "Deploy to production envirement success!"
