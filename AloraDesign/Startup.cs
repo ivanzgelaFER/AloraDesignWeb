@@ -133,7 +133,7 @@ namespace AloraDesign
 
         public virtual void ConfigureDatabase(IServiceCollection services)
         {
-            services.AddDbContext<BuildingsContext>(options => options.UseNpgsql("Server=localhost;Port=5432;Database=Buildings;User Id=postgres;Password=bazepodataka", o => o.CommandTimeout(1800)));
+            services.AddDbContext<BuildingsContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"), o => o.CommandTimeout(1800)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
