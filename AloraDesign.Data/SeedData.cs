@@ -20,9 +20,9 @@ namespace AloraDesign.Data
                 Log.Error(ex.Message);
             }
 
-            string adminPassword = config.GetSection("SeedPasswordAdmin").Value;
-            string superAdminPassword = config.GetSection("SeedPasswordSuperAdmin").Value;
-            string tenantPassword = config.GetSection("SeedPasswordTenant").Value;
+            string adminPassword = "Qwertzu1,";
+            string superAdminPassword = "Qwertzu1,";
+            string tenantPassword = "Qwertzu1,";
 
             if (!await ctx.ResidentialBuildings.AnyAsync()) await SeedResidentialBuilding(ctx);
             if (!await ctx.Roles.AnyAsync()) await SeedRolesAsync(roleManager);

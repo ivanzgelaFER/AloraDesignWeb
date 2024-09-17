@@ -38,8 +38,6 @@ namespace AloraDesign
             IMapper mapper = new MapperConfiguration(mc => mc.AddProfile(new AutoMapperProfile())).CreateMapper();
             services.AddSingleton(mapper);  //mapper has been added as singleton because this service won't change in the future through application runtime
 
-            LockoutSettings lockoutSettings = ConfigurationBinder.Get<LockoutSettings>(Configuration.GetSection("Lockout"));
-
             services.AddIdentity<AppUser, AppRole>(options =>
             {
                 options.Password.RequireDigit = true;
@@ -48,15 +46,15 @@ namespace AloraDesign
                 options.Password.RequireLowercase = true;
                 options.Password.RequireNonAlphanumeric = false;
 
-                options.Lockout.AllowedForNewUsers = lockoutSettings.Enabled;
-                options.Lockout.MaxFailedAccessAttempts = lockoutSettings.Attempts;
-                options.Lockout.DefaultLockoutTimeSpan = lockoutSettings.LockoutTimespan;
+                options.Lockout.AllowedForNewUsers = true;
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
             })
                 .AddUserManager<AppUserManager>()
                 .AddEntityFrameworkStores<BuildingsContext>()
                 .AddDefaultTokenProviders();
 
-            byte[] key = Encoding.ASCII.GetBytes(Configuration["Secret"]);
+            byte[] key = Encoding.ASCII.GetBytes("Wd9AXruWovH5csazQ8pw9J4kjbL_eKqyscXlDJmyW60");
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -135,7 +133,7 @@ namespace AloraDesign
 
         public virtual void ConfigureDatabase(IServiceCollection services)
         {
-            services.AddDbContext<BuildingsContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"), o => o.CommandTimeout(1800)));
+            services.AddDbContext<BuildingsContext>(options => options.UseNpgsql("Server=localhost;Port=5432;Database=Buildings;User Id=postgres;Password=bazepodataka", o => o.CommandTimeout(1800)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -150,7 +148,7 @@ namespace AloraDesign
 
             app.ConfigureCustomExceptionMiddleware();
 
-            if (Configuration.GetSection("UseSwagger").Get<bool>())
+            if (true)
             {
                 app.UseCustomSwagger();
             }
