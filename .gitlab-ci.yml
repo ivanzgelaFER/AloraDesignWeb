@@ -45,6 +45,7 @@ deploy-job:
               doctl auth init -t "$ALORA_PRODUCTION_TOKEN"
               echo "----------------------------------------line 46!"
               doctl registry login
+              doctl registry repo delete-manifest alorarepo sha256:"$ALORA_CONTAINER_SHA_PRODUCTION" --force
               echo "----------------------------------------line 48!"
               docker tag "$DOCKER_IMAGE" registry.digitalocean.com/alora-registry/alorarepo-v1
               echo "----------------------------------------line 50!"
