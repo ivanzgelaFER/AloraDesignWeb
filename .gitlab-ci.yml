@@ -2,11 +2,12 @@ stages:
     - build
     - deploy
 
+variables:
+    DOCKER_IMAGE: aloradesignimage
+
 build-job:
     stage: build
     image: docker:27.2.1-dind
-    variables:
-        DOCKER_IMAGE: aloradesignimage
     services:
         - docker:27.2.1-dind
     before_script:
@@ -15,9 +16,12 @@ build-job:
     script:
         - |
             if [[ "$CI_COMMIT_BRANCH" == "main" ]]; then
-              docker build -t "$DOCKER_IMAGE" -f Dockerfile .
+              - docker build -t "$DOCKER_IMAGE" -f Dockerfile .
+              - docker save -o "$DOCKER_IMAGE.tar" "$DOCKER_IMAGE"
             fi
-
+    artifacts:
+        paths:
+            - "$DOCKER_IMAGE.tar"
     only:
         refs:
             - main
@@ -34,17 +38,24 @@ deploy-job:
         - mv doctl /usr/local/bin
         - |
             if [[ "$CI_COMMIT_BRANCH" == "main" ]]; then
+              echo "Loading Docker image..."
+              echo "----------------------------------------line 42!"
+              docker load -i "$DOCKER_IMAGE.tar"
+              echo "----------------------------------------line 44!"
               doctl auth init -t "$ALORA_PRODUCTION_TOKEN"
-              echo "----------------------------------------line 36!"
+              echo "----------------------------------------line 46!"
               doctl registry login
-              echo "----------------------------------------line 38!"
-              docker tag aloradesignimage registry.digitalocean.com/alora-registry/alora-repo
-              echo "----------------------------------------line 40!"
+              echo "----------------------------------------line 48!"
+              docker tag "$DOCKER_IMAGE" registry.digitalocean.com/alora-registry/alora-repo
+              echo "----------------------------------------line 50!"
               docker push registry.digitalocean.com/alora-registry/alora-repo
-              echo "----------------------------------------line 4!"
+              echo "----------------------------------------line 52!"
               doctl apps create-deployment "$ALORA_PROD_APPID" --force-rebuild
               echo "Deploy to production envirement success!"
             fi
+    artifacts:
+        paths:
+            - "$DOCKER_IMAGE.tar"
     only:
         refs:
             - main
