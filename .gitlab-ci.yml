@@ -46,4 +46,5 @@ deploy-job:
               echo "Deploy to production envirement success!"
             fi
     only:
-        - main
+        refs:
+            - main
